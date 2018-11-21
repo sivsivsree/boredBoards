@@ -1,0 +1,38 @@
+$card-color: #5f9ea0;
+$page-height: calc(100vh - 64px);
+$wrapper-width: 250px;
+$hfwidth: calc(250px - 2*4px);
+.card-container{
+  overflow:auto;
+  height:$page-height;
+  padding:20px;
+  background: rgba($card-color,.8);
+}
+
+.card-wrapper{
+  width:$wrapper-width;
+  background: $card-color;
+  //padding:4px;
+  border-radius: 5px;
+
+  .card-inside,.addnew{
+    margin:4px;
+  }
+
+
+  .addnew{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .addnew-text{
+    display: flex;
+    flex-grow: 1;
+    background: aliceblue;
+    padding: 8px 12px;
+    outline: none;
+    border:none;
+    margin-bottom: 4px;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+}
