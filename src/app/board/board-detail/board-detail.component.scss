@@ -1,38 +1,68 @@
-$card-color: #5f9ea0;
-$page-height: calc(100vh - 64px);
+@import "../../../styles";
+
+$card-color: #67b2ca;
+$textColorPrimary: #000;
+$page-height: calc(100vh - 104px);
 $wrapper-width: 250px;
-$hfwidth: calc(250px - 2*4px);
-.card-container{
-  overflow:auto;
-  height:$page-height;
-  padding:20px;
-  background: rgba($card-color,.8);
+$hfwidth: calc(250px - 2 * 4px);
+
+.card-container {
+  overflow: auto;
+  height: $page-height;
+  background: $card-color;
+  display: flex;
 }
 
-.card-wrapper{
-  width:$wrapper-width;
-  background: $card-color;
+.card-wrapper {
+  width: $wrapper-width;
+  background: darken($card-color, 7%);
+  align-self: flex-start;
   //padding:4px;
   border-radius: 5px;
 
-  .card-inside,.addnew{
-    margin:4px;
-  }
-
-
-  .addnew{
+  .addnew {
     display: flex;
     flex-wrap: wrap;
+    background: transparent;
   }
-  .addnew-text{
+  .addnew-text {
     display: flex;
     flex-grow: 1;
-    background: aliceblue;
     padding: 8px 12px;
     outline: none;
-    border:none;
-    margin-bottom: 4px;
+    border: none;
     border-radius: 4px;
     font-size: 16px;
+    background: transparent;
+    color: $textColorPrimary;
   }
+
+}
+
+.card-holder {
+  max-height: calc(100vh - 250px);
+  overflow: auto;
+}
+
+.flex{
+  display: flex;
+}
+
+::-webkit-scrollbar-track {
+  background-color: darken($card-color, 7%);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: darken($card-color, 20%);
+  border: none;
+  border-radius: 10px;
+}
+
+::placeholder{
+  color:$textColorPrimary
 }

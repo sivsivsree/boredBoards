@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {BoardService} from '../../services/board.service';
+import {BoardList} from '../../classes/board-list';
 
 @Component({
   selector: 'app-board-detail',
@@ -7,9 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BoardDetailComponent implements OnInit {
 
-  constructor() { }
+  boardList: BoardList[] = null;
 
-  ngOnInit() {
+  constructor(private bs: BoardService) {
+
   }
 
+  ngOnInit() {
+    this.bs.board.subscribe((boards) => {
+      this.boardList = boards;
+      console.log(boards);
+    });
+  }
+
+
+  createNewList(listTitle) {
+    if (listTitle.trim().length > 0) {
+      this.bs.createBoard(listTitle);
+    }
+  }
+
+  addCardToList(boardId, cardTitle: string) {
+    if (cardTitle.trim().length > 0) {
+      this.bs.addCardToList(boardId, cardTitle);
+    }
+  }
 }

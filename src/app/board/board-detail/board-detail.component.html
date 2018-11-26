@@ -1,24 +1,37 @@
 <app-boardnav></app-boardnav>
 
-<div class="card-container">
 
-  <div class="card-wrapper">
+<div class="card-container p20">
 
-    <div>
+  <div class="board-lists flex">
+    <div *ngFor="let board of boardList;" class="card-wrapper mr8">
 
+      <!--list - header-->
+      <div>
+        <mat-toolbar-row>
+          <span>{{board.title}}</span>
+          <span class="example-spacer"></span>
+        </mat-toolbar-row>
+      </div>
+
+      <div cdkDropList *ngIf="board.cards && board.cards.length > 0" class="card-holder">
+        <mat-card cdkDrag *ngFor="let card of board.cards" class="card-inside ml8 mr8 mb4" draggable="true">
+          {{card.title}}
+        </mat-card>
+      </div>
+
+      <div class="addnew ml8 mr8 mb4">
+        <input #addCard (keyup.enter)="addCardToList(board.boardId, addCard.value); addCard.value = ''" type="text"
+               class="addnew-text" placeholder="Add a title">
+      </div>
     </div>
 
-    <mat-card class="card-inside">Simple card</mat-card>
-    <mat-card class="card-inside">Simple card</mat-card>
-    <mat-card class="card-inside">Simple card</mat-card>
-    <mat-card class="card-inside">Simple card</mat-card>
-    <mat-card class="card-inside">Simple card</mat-card>
-    <mat-card class="card-inside">Simple card</mat-card>
-    <mat-card class="card-inside">Simple card</mat-card>
-    <mat-card class="card-inside">Simple card</mat-card>
-
-    <div class="addnew">
-      <input type="text" class="addnew-text" placeholder="Add a title">
+  </div>
+  <!--default-->
+  <div class="card-wrapper mr8">
+    <div class="addnew ml8 mr8">
+      <input #listTitle (keyup.enter)="createNewList(listTitle.value); listTitle.value = ''" type="text"
+             class="addnew-text inline-flex" placeholder="Create a new list.">
     </div>
   </div>
 
